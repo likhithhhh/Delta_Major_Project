@@ -1,0 +1,114 @@
+.navbar{
+    height: 5rem;
+}
+
+.fa-compass{
+    color: rgb(223, 50, 85);
+    font-size: 2rem;
+}
+
+.nav-link{
+    color: black !important;
+}
+
+.container{
+    flex: 1;
+}
+ 
+.f-info{
+    display: flex;
+    flex-wrap: wrap;
+    height: 8rem;
+    justify-content: center;
+    align-items: space-evenly;
+    background-color: rgb(204, 198, 198) !important;
+    text-align: center;
+}
+
+.f-info-links{
+    width: 100%;
+    font-size: 1rem;
+}
+
+.f-info-socials{
+    width: 100%;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.f-info-socials i{
+    margin-right: 1.2rem; 
+}
+
+.f-info-links a{
+    text-decoration: none !important;  /*overline/ underline or line through */
+   color: 222222;
+   width: 100% !important;
+   text-align: center !important;
+
+}
+
+.f-info-links a:hover{ 
+    text-decoration: underline !important;  /*overline/ underline or line through */
+}
+
+.f-text{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    margin: 1rem;
+}
+
+.f-info-icons{
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.f-info-icons i{
+    margin: 1rem;
+}
+
+.card-img-top{
+    border-radius: 1rem !important;
+}
+
+.listing-card{
+    border: none !important;
+    margin-bottom: 2rem !important;
+}
+
+.listing-card:hover{
+    opacity: 0.9;
+}
+
+.card-body{
+    padding: 0% !important;
+}
+
+/* .listing-link{
+    text-decoration: none !important;
+} */
+
+.card-img-overlay{
+    opacity: 0.5;
+}
+
+/* .card-img-overlay:hover{
+    opacity: 0.3;
+    background-color: white;
+} */
+
+/* new page */
+
+.add-btn{
+    background-color: rgb(223, 50, 85) !important;
+    border: none;
+}
+
+#map{
+    height: 350px;
+    width: 650px;
+}

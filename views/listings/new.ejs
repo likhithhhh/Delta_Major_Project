@@ -1,0 +1,61 @@
+<% layout("./layouts/boilerplate") %>
+
+<body style="background-color: rgb(240, 251, 125);">
+    <h3 style="text-align: center;">Create new form</h3>
+    <div class="row">
+        <div class="col-8 offset-2">
+        <form method="post" action="/listings" class="needs-validation" novalidate enctype="multipart/form-data">
+            <!-- here, enctype= multipart form data , because generally our form will only send the 
+             url encoded data to the backend, so to send files we us ethis format, and if 
+             we send data like this it will give us an emoty object, for this we use an
+             npm library named "multer" -->
+            <!-- novalidate and needs validation class is used for validation in the form -->
+             <!-- if it is required then it show green if filled, or else it shows red.-->
+              <!-- we had a script.js file where we should add for the validation in the boilerplate.js -->
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" placeholder="enter title" name="listing[title]" class="form-control" required > 
+                <!-- here we write requires for the fields for validation, if not filled gives "field is required"  and for all other fields-->
+                <div class="invalid-feedback">Please enter username</div>
+                <!-- this class is used for writing the field descripiton -->
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" placeholder="enter description" name="listing[description]" class="form-control" required>
+                <div class="invalid-feedback">Please enter description</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload Image</label>
+                <input type="file" name="listing[image]" class="form-control" >
+            </div>
+            
+
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="price" class="form-label">Price</label>
+                    <input placeholder="enter price" name="listing[price]" type="number" class="form-control" required>
+                    <div class="invalid-feedback">Please enter price</div>
+                </div>
+
+                <div class="mb-3 col-md-8">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" placeholder="enter location" name="listing[location]" class="form-control" required>
+                    <div class="invalid-feedback">Please enter Location</div>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="country" class="form-label">Country</label>
+                <input type="text" placeholder="enter country" name="listing[country]" class="form-control" required>
+                <div class="invalid-feedback">Please enter Country</div>
+            </div>
+            <button class="btn btn-dark add-btn">submit</button>
+            <br><br>
+        </form>
+        </div>
+    </div>
+    
+</body>
+

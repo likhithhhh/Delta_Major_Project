@@ -1,0 +1,105 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+<!-- <script>
+  const mapToken="<%= process.env.MAP_TOKEN %>";
+  const coordinates = <%- JSON.stringify(listing.geometry.coordinates || []) %>;
+</script> -->
+  <div class=" col-8 offset-2">
+  <h2> <%= listing.title %></h2><br>
+    <div class="card listing-card" style="width: 30rem;">
+      <img src="<%= listing.image ? listing.image.url : '/default.jpg' %>" class="card-img-top" alt="listing_image">
+      <div class="card-body">
+          <p class="card-text">   
+            <p>Owned By: <%= listing.owner ? listing.owner.username : "Unknown" %></p>
+            <p>Description: <%= listing.description %></p>
+            <p>Price: &#8377;<%= listing.price %></p>
+            <p>Location: <%= listing.location %></p>
+            <p>Country: <%= listing.country %></p>
+        </div>
+    </div>    
+
+      <!-- here if condition is authorising the user, if the user logged in can only edit his listings -->
+    <form method="get" action="/listings/<%= listing._id %>/edit">
+      <button class="btn btn-dark">Edit</button>
+    </form>    
+    <br>
+    <form method="post" action="/listings/<%= listing._id %>?_method=DELETE">
+        <button class="btn btn-dark">Delete</button>
+    </form>
+       <br><br> 
+  </div>
+
+<hr>
+
+  <div class="col-8 offset-2">
+    <% if(currUser){ %>  <!-- here, we are seeing that if the current user exists (if he's logged in) then we see review form--> 
+    <h2>Reviews</h2> 
+    <form method="post" class="form-control mb-3 mt-3 needs-validation" action="/listings/<%= listing._id %>/reviews" novalidate>
+      <label for="rating" class="form-label">Rating</label>
+      <div>
+        <fieldset class="starability-slot">
+          <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+          <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+          <label for="first-rate1" title="Terrible">1 star</label>
+          <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+          <label for="first-rate2" title="Not good">2 stars</label>
+          <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+          <label for="first-rate3" title="Average">3 stars</label>
+          <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+          <label for="first-rate4" title="Very good">4 stars</label>
+          <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+          <label for="first-rate5" title="Amazing">5 stars</label>
+        </fieldset>
+      </div>
+      <div>
+        <label for="comment" class="form-label">Comment</label>
+        <br>  
+        <textarea name="review[comment]" rows=5 cols=3 id="comment" placeholder="write a comment" class="form-control" required></textarea>
+        <div class="invalid-feedback">please write a comment</div>
+      </div>
+     <br>
+      <div>
+        <button class="btn btn-dark btn-sm"> Submit </button>
+      </div>
+
+    </form>
+    <% } %>
+    <div>
+
+    <% if(listing.reviews.length > 0 ){ %>
+    <div class="row">
+      <h3>All reviews</h3>  
+        <% for (review of listing.reviews){ %>
+          <div class="card mt-3 col-5 ms-3 mb-3">
+            <div class="card-body mt-3 mb-3">
+              <p class="card-title" style="margin-left: 1rem;">@<%= review.author.username %></p>
+              <p class="card-text" style="margin-left: 1rem;"><%= review.comment %></p>
+              <p class="starability-result card-text" data-rating= <%= review.rating %>>
+                <%= review.rating %>
+              </p>
+            </div>
+            <div class="mb-3">
+            <form method="post" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+              <button class="btn btn-dark">Delete</button>
+            </form>
+            </div>
+          </div>
+        <% } %>
+    </div>
+    <% } %>
+
+    <!-- <p><%= listing.reviews %></p>  -->
+        <!-- this will only show the object ids of the review, to show the full info of the  -->
+        <!-- review, we should use populate command.. -->
+    </div>
+    <!-- <div class="col-6 offset-2"></div>
+      <h3>Your Map</h3>
+      <div id="map"></div>
+    </div>  -->
+  </div>
+
+  <!-- <script src="/js/map.js"></script> -->
+
+</body>
+
+

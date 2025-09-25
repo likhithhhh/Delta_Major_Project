@@ -1,0 +1,52 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+
+     <!-- in edit.ejs we use value , because it should currently be there ,and then to be edited. -->
+      <!-- in new.ejs we use placeholder to text -->
+    <h3 style="text-align: center;">Edit form</h3>
+    <div class="row">
+        <div class="col-8 offset-2"> 
+        <form method="post" action="/listings/<%=listing._id%>?_method=PUT" class="needs-validation" novalidate enctype="multipart/form-data">
+                <!-- novalidate and needs validation class is used for validation in the form -->
+                <!-- if it is required then it show green if filled, or else it shows red.-->
+                <!-- we had a script.js file where we should add for the validation in the boilerplate.js -->
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" name="listing[title]" value="<%= listing.title %>" class="form-control" required>
+                <!-- here we write requires for the fields for validation, if not filled gives "field is required"  and for all other fields-->
+            </div>
+            <div class="mb-3"> 
+                <label for="description" class="form-label">Description</label>
+                <input type="text" name="listing[description]" value="<%= listing.description %>" class="form-control" required>  
+            </div>
+
+            <div class="mb-3">
+                <p>Original image</p>
+                <img src="<%= listing.image.url %>" height="300px" width="500px">
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload new Image</label>
+                <input type="file" name="listing[image]" class="form-control" >
+            </div>
+            <div class="row"> 
+                <div class="col-4 mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="text" name="listing[price]" type="number" value="<%= listing.price %>" class="form-control" required>
+                </div>
+                <div class="col-8 mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" name="listing[location]" type="text" value="<%= listing.location %>" class="form-control" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="country" class="form-label">Country</label>
+                <input type="text"  name="listing[country]" type="text" value="<%= listing.country %>" class="form-control" required>
+            </div>
+            <br>
+            <button class="btn btn-dark mb-3">update</button>
+            </form>
+            </div>
+    </div>
+   
+</body>
