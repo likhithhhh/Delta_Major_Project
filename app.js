@@ -84,9 +84,7 @@ app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));``
 app.use(express.urlencoded({extended:true}));
 
-app.get("/",(req,res)=>{
-    res.send("response success");
-});
+app.use("/",listings);
 
 app.use(session(sessionOptions));
 // session is always initialised whenever a request occurs.
